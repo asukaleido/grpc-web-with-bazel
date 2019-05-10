@@ -1,0 +1,20 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_library(
+    name = "ts_default_library",
+    srcs = [
+        "BarComponent.tsx",
+        "index.ts",
+    ],
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+        "@npm//@types/react",
+        "@npm//react",
+    ],
+    module_name = "@grpc-web-with-bazel/foundation/components/BarComponent",
+    # Don't allow deep imports under here
+    module_root = "index.d.ts",
+)

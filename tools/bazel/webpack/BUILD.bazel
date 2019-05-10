@@ -1,0 +1,29 @@
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "webpack.config.js",
+])
+
+# nodejs_binary(
+#     name = "webpack",
+#     data = [
+#         "@nodejs_webpack_deps//@babel/core",
+#         "@nodejs_webpack_deps//@babel/preset-env",
+#         "@nodejs_webpack_deps//babel-loader",
+#         "@nodejs_webpack_deps//terser-webpack-plugin",
+#         "@nodejs_webpack_deps//webpack",
+#         "@nodejs_webpack_deps//webpack-cli",
+#     ],
+#     entry_point = "webpack/bin/webpack",
+#     install_source_map_support = False,
+# )
+
+nodejs_binary(
+    name = "webpack",
+    node_modules = "@nodejs_webpack_deps//:node_modules",
+    entry_point = "webpack/bin/webpack",
+    # entry_point = "nodejs_webpack_deps/node_modules/webpack/bin/webpack",
+    install_source_map_support = False,
+)

@@ -1,0 +1,30 @@
+###############################
+# Directory structure         #
+###############################
+
+# Globally cache downloaded artifacts.
+build --experimental_repository_cache=~/.bazel_cache/
+test --experimental_repository_cache=~/.bazel_cache/
+run --experimental_repository_cache=~/.bazel_cache/
+
+# Create symlinks in the project:
+# - dist/bin for outputs
+# - dist/testlogs, dist/genfiles
+# - bazel-out
+build --symlink_prefix=dist/
+
+###############################
+# Output                      #
+###############################
+
+# A more useful default output mode for bazel query, which prints "ts_library rule //foo:bar"
+# instead of just "//foo:bar".
+query --output=label_kind
+
+# By default, failing tests don't print any output, it's logged to a file instead.
+test --test_output=errors
+
+# Show which actions are running under which workers and print all the actions running in parallel.
+# This shows that Bazel runs on all cores of a CPU.
+build --experimental_ui
+test --experimental_ui

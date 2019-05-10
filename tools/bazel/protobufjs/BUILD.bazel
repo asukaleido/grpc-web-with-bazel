@@ -1,0 +1,41 @@
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+nodejs_binary(
+    name = "pbjs",
+    data = [
+        "@nodejs_protobufjs_deps//protobufjs",
+        "@nodejs_protobufjs_deps//chalk",
+        "@nodejs_protobufjs_deps//escodegen",
+        "@nodejs_protobufjs_deps//espree",
+        "@nodejs_protobufjs_deps//estraverse",
+        "@nodejs_protobufjs_deps//glob",
+        "@nodejs_protobufjs_deps//jsdoc",
+        "@nodejs_protobufjs_deps//minimist",
+        "@nodejs_protobufjs_deps//semver",
+        "@nodejs_protobufjs_deps//tmp",
+        "@nodejs_protobufjs_deps//uglify-js",
+    ],
+    entry_point = "protobufjs/bin/pbjs",
+    install_source_map_support = False,
+)
+
+nodejs_binary(
+    name = "pbts",
+    data = [
+        "@nodejs_protobufjs_deps//protobufjs",
+        "@nodejs_protobufjs_deps//chalk",
+        "@nodejs_protobufjs_deps//escodegen",
+        "@nodejs_protobufjs_deps//espree",
+        "@nodejs_protobufjs_deps//estraverse",
+        "@nodejs_protobufjs_deps//glob",
+        "@nodejs_protobufjs_deps//jsdoc",
+        "@nodejs_protobufjs_deps//minimist",
+        "@nodejs_protobufjs_deps//semver",
+        "@nodejs_protobufjs_deps//tmp",
+        "@nodejs_protobufjs_deps//uglify-js",
+    ],
+    entry_point = "protobufjs/bin/pbts",
+    install_source_map_support = False,
+)

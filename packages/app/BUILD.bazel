@@ -1,0 +1,21 @@
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//:__pkg__"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "package.json",
+    ],
+)
+
+filegroup(
+    name = "app",
+    srcs = [
+        "//packages/app:copy_files",
+        "//packages/app/client:webpack_default_bundle",
+        "//packages/app/server/backend:copy_files",
+        "//packages/app/server/backend:ts_default_library",
+        "//packages/app/server/frontend:copy_files",
+    ],
+)

@@ -1,0 +1,11 @@
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//packages/app:__pkg__"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "Dockerfile",
+        "nginx.conf",
+    ],
+)

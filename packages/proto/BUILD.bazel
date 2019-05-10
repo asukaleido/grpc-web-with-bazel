@@ -1,0 +1,44 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("//tools/bazel:defs.bzl", "ts_proto_library", "copy_files")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_proto_library(
+    name = "ts_proto_default_library",
+    output_name = "proto",
+    deps = [
+        "//proto:proto_default_library",
+    ],
+)
+
+ts_library(
+    name = "ts_default_library",
+    srcs = [
+        "index.ts",
+    ],
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+        "@npm//protobufjs",
+        ":ts_proto_default_library",
+    ],
+    module_name = "@grpc-web-with-bazel/proto",
+    # Don't allow deep imports under here
+    module_root = "index.d.ts",
+)
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "package.json",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "proto",
+    srcs = [
+        "//packages/proto:copy_files",
+    ],
+    visibility = ["//:__pkg__"],
+)

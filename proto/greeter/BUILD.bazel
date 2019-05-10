@@ -1,0 +1,29 @@
+load("//tools/bazel/google_protobuf:ts_proto_library.bzl", "ts_proto_library")
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//proto:__subpackages__"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "service.proto",
+    ],
+)
+
+proto_library(
+    name = "proto_default_library",
+    srcs = [
+        "service.proto",
+    ],
+    deps = [
+        "//proto/user:proto_default_library",
+    ],
+)
+
+ts_proto_library(
+    name = "ts_proto_default_library",
+    deps = [
+        ":proto_default_library",
+    ],
+    has_service = True,
+)

@@ -1,0 +1,54 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("//tools/bazel:defs.bzl", "rollup_bundle", "webpack_bundle")
+
+package(default_visibility = ["//packages/app:__pkg__"])
+
+ts_library(
+    name = "ts_default_library",
+    srcs = [
+        "index.tsx",
+    ],
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+        "@npm//@types/react",
+        "@npm//@types/react-dom",
+        "@npm//react",
+        "@npm//react-dom",
+        "@npm//protobufjs",
+        "//packages/foundation/components/FooComponent:ts_default_library",
+        "//packages/proto:ts_default_library",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+rollup_bundle(
+    name = "bundle",
+    entry_point = "packages/app/client/index.js",
+    deps = [
+        ":ts_default_library",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "rollup_bundle_prd",
+    srcs = [":bundle"],
+    output_group = "es2015_min",
+)
+
+filegroup(
+    name = "rollup_bundle_dev",
+    srcs = [":bundle"],
+    output_group = "es2015_dev",
+)
+
+webpack_bundle(
+    name = "webpack_default_bundle",
+    entry = {
+        "client": "packages/app/client/index.js",
+    },
+    deps = [
+        ":ts_default_library",
+    ],
+)

@@ -1,0 +1,4 @@
+bazel-out
+dist
+node_modules
+packages/app/client/webpack.config.js

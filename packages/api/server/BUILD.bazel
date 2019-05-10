@@ -1,0 +1,26 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//packages/api:__pkg__"])
+
+ts_library(
+    name = "ts_default_library",
+    srcs = [
+        "index.ts",
+    ],
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+        "@npm//@grpc/grpc-js",
+        "@npm//@grpc/proto-loader",
+    ],
+    module_name = "@grpc-web-with-bazel/api/server",
+    module_root = "index.d.ts",
+)
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "Dockerfile",
+    ],
+)

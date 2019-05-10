@@ -1,0 +1,8 @@
+{
+  "name": "@grpc-web-with-bazel/app",
+  "version": "0.0.0",
+  "dependencies": {
+    "@grpc-web-with-bazel/foundation": "^0.0.0",
+    "@grpc-web-with-bazel/proto": "^0.0.0"
+  }
+}

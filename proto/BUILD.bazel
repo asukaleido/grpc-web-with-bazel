@@ -1,0 +1,34 @@
+package(default_visibility = ["//:__pkg__"])
+
+filegroup(
+    name = "copy_files",
+    srcs = [
+        "//proto/greeter:copy_files",
+        "//proto/user:copy_files",
+    ],
+)
+
+proto_library(
+    name = "proto_default_library",
+    deps = [
+        "//proto/greeter:proto_default_library",
+        "//proto/user:proto_default_library",
+    ],
+    visibility = ["//packages/proto:__pkg__"]
+)
+
+filegroup(
+    name = "ts_proto_default_library",
+    srcs = [
+        "//proto/greeter:ts_proto_default_library",
+        "//proto/user:ts_proto_default_library",
+    ],
+)
+
+filegroup(
+    name = "proto",
+    srcs = [
+        ":copy_files",
+        ":ts_proto_default_library",
+    ],
+)

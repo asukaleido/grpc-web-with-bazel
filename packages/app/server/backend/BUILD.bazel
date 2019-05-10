@@ -1,0 +1,32 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//packages/app:__pkg__"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "Dockerfile",
+    ],
+)
+
+ts_library(
+    name = "ts_default_library",
+    srcs = [
+        "index.tsx",
+    ],
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+        "@npm//@types/react",
+        "@npm//@types/react-dom",
+        "@npm//fastify",
+        "@npm//fastify-static",
+        "@npm//react",
+        "@npm//react-dom",
+        "//packages/app/server/backend/view/Html:ts_default_library",
+        "//packages/foundation/components/FooComponent:ts_default_library",
+    ],
+    module_name = "@grpc-web-with-bazel/app/server/backend",
+    module_root = "index.d.ts",
+)

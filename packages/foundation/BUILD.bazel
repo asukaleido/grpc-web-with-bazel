@@ -1,0 +1,17 @@
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//:__pkg__"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "package.json",
+    ],
+)
+
+filegroup(
+    name = "foundation",
+    srcs = [
+        "//packages/foundation:copy_files",
+    ],
+)

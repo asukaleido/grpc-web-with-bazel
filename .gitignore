@@ -1,0 +1,7 @@
+/bazel-out
+/dist/
+node_modules
+packages/proto/proto.*
+proto/**/*js
+proto/**/*ts
+deps_graph.svg

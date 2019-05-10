@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  api:
+    build:
+      context: ./dist/release/
+      dockerfile: ./packages/api/server/Dockerfile
+    container_name: api
+  api-envoy:
+    build:
+      context: ./dist/release/
+      dockerfile: ./packages/api/server/envoy/Dockerfile
+    container_name: api-envoy
+  frontend:
+    build:
+      context: ./dist/release/
+      dockerfile: ./packages/app/server/frontend/Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"
+    links:
+      - backend
+  backend:
+    build:
+      context: ./dist/release/
+      dockerfile: ./packages/app/server/backend/Dockerfile
+    ports:
+      - "9229:9229"
+    container_name: backend

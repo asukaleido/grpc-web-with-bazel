@@ -1,0 +1,20 @@
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//:__pkg__"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "package.json",
+    ],
+)
+
+filegroup(
+    name = "api",
+    srcs = [
+        "//packages/api:copy_files",
+        "//packages/api/server:copy_files",
+        "//packages/api/server:ts_default_library",
+        "//packages/api/server/envoy:copy_files",
+    ],
+)

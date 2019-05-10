@@ -1,0 +1,26 @@
+load("@build_bazel_rules_nodejs//:defs.bzl", "npm_package")
+load("//tools/bazel:defs.bzl", "copy_files")
+
+package(default_visibility = ["//visibility:private"])
+
+exports_files(["tsconfig.json"], visibility = ["//visibility:public"])
+
+copy_files(
+    name = "copy_files",
+    srcs = [
+        "package.json",
+        "yarn.lock",
+    ],
+)
+
+filegroup(
+    name = "release",
+    srcs = [
+        "//:copy_files",
+        "//packages/api",
+        "//packages/app",
+        "//packages/foundation",
+        "//packages/proto",
+        "//proto",
+    ],
+)
