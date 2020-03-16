@@ -9,7 +9,7 @@
     "estraverse": "^4.2.0",
     "glob": "^7.1.2",
     "jsdoc": "^3.5.5",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "protobufjs": "^6.8.8",
     "semver": "^5.5.0",
     "tmp": "0.0.33",
