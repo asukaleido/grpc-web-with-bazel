@@ -8,7 +8,7 @@
     "@grpc/grpc-js": "^0.4.0",
     "@grpc/proto-loader": "^0.5.1",
     "fastify": "^2.3.0",
-    "fastify-static": "^2.4.0",
+    "fastify-static": "^4.2.4",
     "google-protobuf": "^3.8.0",
     "grpc-web": "^1.0.4",
     "protobufjs": "^6.8.8",
